@@ -1,0 +1,15 @@
+.base {
+  color: inherit;
+  font-size: inherit;
+}
+
+.content {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: from-font;
+  text-underline-offset: .12em;
+}
+
+.nav {
+  text-decoration: none;
+}

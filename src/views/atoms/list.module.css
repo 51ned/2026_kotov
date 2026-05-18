@@ -1,0 +1,103 @@
+@counter-style ru-lower {
+  system: alphabetic;
+  symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'ж' 'з' 'и' 'й' 'к' 'л' 'м' 'н' 'о' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ч' 'ш' 'щ' 'ъ' 'ы' 'ь' 'э' 'ю' 'я';
+}
+
+.base {
+  font-size: var(--text-md);
+  list-style: none;
+  margin-block: 0;
+  padding-left: 0;
+}
+
+/* Orientations */
+
+.horizontal {
+  display: flex;
+  gap: var(--space-s);
+}
+
+.vertical {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+/* Nested lists */
+
+li > .base {
+  margin-block-start: var(--space-xs);
+}
+
+/* Variants */
+
+.ordered li,
+.unordered li {
+  padding-left: var(--space-s);
+  position: relative;
+}
+
+.ordered li::before,
+.unordered li::before {
+  left: 0;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  white-space: nowrap;
+  width: var(--space-s);
+}
+
+.ordered {
+  counter-reset: ol;
+}
+
+.ordered > li {
+  counter-increment: ol;
+}
+
+.ordered > li::before {
+  content: counter(ol) '. ';
+}
+
+.ordered > li > .ordered {
+  counter-reset: ol-ru;
+}
+
+.ordered > li > .ordered > li {
+  counter-increment: ol-ru;
+}
+
+.ordered > li > .ordered > li::before {
+  content: counter(ol-ru, ru-lower) ')';
+}
+
+.unordered > li::before {
+  --marker-size: 0.4em;
+
+  background: currentColor;
+  border-radius: 50%;
+  content: '';
+  height: var(--marker-size);
+  top: calc(0.5em * var(--text-lh) - var(--marker-size) / 2);
+  width: var(--marker-size);
+}
+
+.unordered > li > .unordered > li::before {
+  background: none;
+  border-radius: 0;
+  content: '–';
+  height: auto;
+  top: 0;
+  width: var(--space-s);
+}
+
+/* Horizontal marked lists */
+
+.horizontal.ordered li,
+.horizontal.unordered li {
+  padding-left: var(--space-s);
+}
+
+.horizontal.ordered,
+.horizontal.unordered {
+  gap: var(--space-m);
+}
