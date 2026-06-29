@@ -2,10 +2,17 @@
   import '$styles/index.css'
   import s from './layout.module.css'
 
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.svg'
 
-	let { children } = $props();
+	let { children } = $props()
 </script>
+
+
+{#snippet footerContent()}
+  <div class={s.footerInner}>
+    FOOTER
+  </div>
+{/snippet}
 
 
 <svelte:head>
@@ -26,14 +33,18 @@
     <nav class={s.nav}>
       <span>NAV</span>
     </nav>
+
+    <footer class={`${s.footer} ${s.desktopFooter}`}>
+      {@render footerContent()}
+    </footer>
   </aside>
 
   <aside class={s.topbar}>
     <span>RSS Feed</span>
     <span>Search</span>
   </aside>
-
-  <footer class={s.footer}>
-    <span>FOOTER</span>
+  
+  <footer class={`${s.footer} ${s.mobileFooter}`}>
+    {@render footerContent()}
   </footer>
 </div>

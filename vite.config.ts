@@ -6,7 +6,7 @@ import type { ConfigEnv } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 
 import browserslist from 'browserslist'
-import { browserslistToTargets } from 'lightningcss'
+import { browserslistToTargets, Features } from 'lightningcss'
 
 
 export default ({ mode }: ConfigEnv) => {
@@ -18,7 +18,7 @@ export default ({ mode }: ConfigEnv) => {
       .from(css)
       .toString('base64url')
       .substring(0, 3)
-    
+
     return `${file.replace(/\.module$/, '')}_${name}_${hash}`
   }
 
@@ -28,12 +28,18 @@ export default ({ mode }: ConfigEnv) => {
     },
 
     css: {
+      transformer: 'lightningcss',
+
       lightningcss: {
         drafts: {
           customMedia: true
         },
-        targets: browserslistToTargets(browserslist('last 2 versions, > 0.25%, not dead'))
+        include: Features.CustomMediaQueries,
+        targets: browserslistToTargets(
+          browserslist('last 2 versions, > 0.25%, not dead')
+        )
       },
+
       modules: {
         generateScopedName: isProd
           ? '[hash:base64:2]'

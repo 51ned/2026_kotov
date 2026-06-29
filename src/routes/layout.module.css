@@ -1,9 +1,11 @@
+@import '../styles/media.css';
+
+
 .layout {
   display: grid;
   grid-template-areas:
     'leftbar topbar'
-    'leftbar main'
-    'footer main';
+    'leftbar main';
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
   max-width: var(--layout-max-width);
@@ -18,6 +20,7 @@
   display: grid;
   grid-area: leftbar;
   grid-template-rows: auto 1fr;
+  max-height: 100svh;
   position: sticky;
   top: 0;
 }
@@ -34,7 +37,15 @@
   grid-area: footer;
 }
 
-@media (width < 768px) {
+.desktopFooter {
+  display: block;
+}
+
+.mobileFooter {
+  display: none;
+}
+
+@media (--lg) {
   .layout {
     grid-template-areas:
       'topbar'
@@ -46,15 +57,23 @@
   }
 
   .leftbar {
-    position: static;
-    min-height: auto;
+    align-items: start;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
-    align-items: start;
+    min-height: auto;
+    position: static;
   }
 
   .nav {
     padding-block-start: 0;
     justify-self: end;
+  }
+
+  .desktopFooter {
+    display: none;
+  }
+
+  .mobileFooter {
+    display: block;
   }
 }
