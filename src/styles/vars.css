@@ -4,6 +4,7 @@
   */
 
   --layout-max-width: 1440px;
+  --sidebar-width: clamp(240px, 20%, 288px);
 
   /* Core spacing scale */
   --space-xs: clamp(0.75rem, 0.6875rem + 0.2778vw, 0.9375rem);

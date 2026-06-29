@@ -6,10 +6,14 @@
   grid-template-areas:
     'leftbar topbar'
     'leftbar main';
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   max-width: var(--layout-max-width);
   min-height: 100svh;
+}
+
+.main, .leftbar {
+  padding: var(--space-l-xl);
 }
 
 .main {
@@ -17,12 +21,30 @@
 }
 
 .leftbar {
+  border-right: 1px solid #666;
   display: grid;
   grid-area: leftbar;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr;
-  max-height: 100svh;
+  height: 100svh;
   position: sticky;
   top: 0;
+}
+
+.header {
+  border-bottom: 1px solid #666;
+  padding-bottom: var(--space-l-xl);
+}
+
+.logo {
+  display: block;
+  inline-size: 100%;
+}
+
+.logo img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
 }
 
 .nav {
@@ -31,10 +53,6 @@
 
 .topbar {
   grid-area: topbar;
-}
-
-.footer {
-  grid-area: footer;
 }
 
 .desktopFooter {

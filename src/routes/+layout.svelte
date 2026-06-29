@@ -2,6 +2,7 @@
   import '$styles/index.css'
   import s from './layout.module.css'
 
+  import logo from '$lib/assets/logo.svg'
 	import favicon from '$lib/assets/favicon.svg'
 
 	let { children } = $props()
@@ -26,8 +27,10 @@
   </main>
 
   <aside class={s.leftbar}>
-    <header>
-      <span>LOGO</span>
+    <header class={s.header}>
+      <a class={s.logo} href='/' aria-label='Котов — на главную'>
+        <img src={logo} alt='Котов' />
+      </a>
     </header>
 
     <nav class={s.nav}>
